@@ -1,0 +1,17 @@
+{
+    "name": "suez/jwt-bundle",
+    "version": "1.0.0",
+    "type": "symfony-bundle",
+    "autoload": {
+        "psr-4": { "Suez\\Bundle\\JwtBundle\\": "" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "require": {
+        "php": "^7.1.3",
+        "rmccue/requests": "v1.7",
+        "symfony/symfony": "^2.8"
+    },
+    "minimum-stability": "dev"
+}

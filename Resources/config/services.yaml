@@ -1,0 +1,12 @@
+services:
+    suez_jwt.client.jwt:
+      class: Suez\Bundle\JwtBundle\Client\JwtClient
+      public: false
+      arguments:
+        - '%suez_jwt.url%'
+        - '%suez_jwt.api_key%'
+
+    suez_jwt.provider.jwt_token:
+      class: Suez\Bundle\JwtBundle\Provider\JwtTokenProvider
+      arguments:
+        - '@suez_jwt.client.jwt'
