@@ -1,6 +1,8 @@
 <?php
 
-namespace Suez\Bundle\JwtBundle\Client;
+namespace Suez\Bundle\SmartCoachClientBundle\Client;
+
+use Suez\Bundle\SmartCoachClientBundle\Exception\JwtClientException;
 
 /**
  * JwtClient
@@ -8,13 +10,31 @@ namespace Suez\Bundle\JwtBundle\Client;
 class JwtClient
 {
     /**
-     * @param string $url
-     * @param string $apiKey
+     * @param array $jwtConfig
      */
-    public function __construct($url, $apiKey)
+    public function __construct(array $jwtConfig)
     {
-        $this->url = $url;
-        $this->apiKey = $apiKey;
+        $this->jwtConfig = $jwtConfig;
+    }
+
+    /**
+     * @param string    $servicePoint
+     * @param \DateTime $contractedAt
+     *
+     * @return string
+     * 
+     * @throws JwtClientException
+     */
+    public function getJwtToken($servicePoint, \DateTime $contractedAt)
+    {
+        $loginResponse = $this->login($servicePoint, $contractedAt);
+        $jwtData = json_decode($loginResponse->body, true);
+
+        if ($jwtData || !isset($jwtData['token'])) {
+            throw new JwtClientException('Cannot retrieve `token` from response');
+        }
+
+        return $jwtData['token'];
     }
 
     /**
@@ -23,11 +43,11 @@ class JwtClient
      *
      * @return Requests_Response
      */
-    public function login($servicePoint, \DateTime $contractedAt)
+    private function login($servicePoint, \DateTime $contractedAt)
     {
         $body = json_encode(['servicePoint' => $servicePoint, 'contractedAt' => $contractedAt]);
-        $headers = ['apikey' => $this->apiKey];
-        $request = \Requests::post($this->url, $headers, $body);
+        $headers = ['apikey' => $this->jwtConfig['apiKey']];
+        $request = \Requests::post($this->jwtConfig['url'], $headers, $body);
         $request->throw_for_status();
 
         return $request;

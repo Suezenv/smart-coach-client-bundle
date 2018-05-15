@@ -1,6 +1,5 @@
 {
-    "name": "suez/jwt-bundle",
-    "version": "1.0.0",
+    "name": "suez/smart-coach-client-bundle",
     "type": "symfony-bundle",
     "autoload": {
         "psr-4": { "Suez\\Bundle\\JwtBundle\\": "" },
