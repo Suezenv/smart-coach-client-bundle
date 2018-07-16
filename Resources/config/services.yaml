@@ -1,0 +1,5 @@
+services:
+    suez_smart_coach_client.jwt:
+      class: Suez\Bundle\SmartCoachClientBundle\Client\JwtClient
+      arguments:
+        - '%suez_smart_coach_client.jwt%'
