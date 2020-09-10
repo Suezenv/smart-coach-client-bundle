@@ -9,8 +9,7 @@
     },
     "require": {
         "php": ">=5.4.4",
-        "rmccue/requests": "v1.7",
-        "symfony/symfony": "^2.8|^3.4|^5.1"
+        "rmccue/requests": "v1.7"
     },
     "minimum-stability": "dev"
 }
