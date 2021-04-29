@@ -10,13 +10,16 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
+    const SUEZ_SMART_COACH_CLIENT = 'suez_smart_coach_client';
+
     /**
      * {@inheritDoc}
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('suez_smart_coach_client');
+        $treeBuilder = new TreeBuilder(self::SUEZ_SMART_COACH_CLIENT);
+        //$rootNode = $treeBuilder->root(self::SUEZ_SMART_COACH_CLIENT);
+        $rootNode = method_exists(TreeBuilder::class, 'getRootNode') ? $treeBuilder->getRootNode() : $treeBuilder->root(self::SUEZ_SMART_COACH_CLIENT);
 
         $rootNode
             ->children()
