@@ -2,15 +2,21 @@
     "name": "suez/smart-coach-client-bundle",
     "type": "symfony-bundle",
     "autoload": {
-        "psr-4": { "Suez\\Bundle\\SmartCoachClientBundle\\": "" },
+        "psr-4": {
+            "Suez\\Bundle\\SmartCoachClientBundle\\": ""
+        },
         "exclude-from-classmap": [
             "/Tests/"
         ]
     },
     "require": {
-        "php": ">=5.4.4",
+        "php": "^7.3.33",
         "rmccue/requests": "v1.8",
-        "symfony/symfony": "^3.4"
+        "symfony/symfony": "^4.4|^5.4",
+        "ext-json": "*"
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "config": {
+        "sort-packages": true
+    }
 }

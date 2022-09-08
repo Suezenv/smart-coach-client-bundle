@@ -5,9 +5,6 @@ namespace Suez\Bundle\SmartCoachClientBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-/**
- * Configuration
- */
 class Configuration implements ConfigurationInterface
 {
     const SUEZ_SMART_COACH_CLIENT = 'suez_smart_coach_client';
@@ -18,7 +15,6 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder(self::SUEZ_SMART_COACH_CLIENT);
-        //$rootNode = $treeBuilder->root(self::SUEZ_SMART_COACH_CLIENT);
         $rootNode = method_exists(TreeBuilder::class, 'getRootNode') ? $treeBuilder->getRootNode() : $treeBuilder->root(self::SUEZ_SMART_COACH_CLIENT);
 
         $rootNode
